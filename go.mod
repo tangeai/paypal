@@ -1,4 +1,4 @@
-module github.com/tangei/paypal/v3
+module github.com/tangeai/paypal/v3
 
 go 1.12
 
