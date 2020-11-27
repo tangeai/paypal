@@ -317,6 +317,7 @@ type (
 		CycleExecutions     []CycleExecutions `json:"cycle_executions,omitempty"`
 		LastPayment         LastPayment       `json:"last_payment,omitempty"`
 		NextBillingTime     time.Time         `json:"next_billing_time,omitempty"`
+		FinalPaymentTime    time.Time         `json:"final_payment_time,omitempty"`
 		FailedPaymentsCount int               `json:"failed_payments_count,omitempty"`
 	}
 
