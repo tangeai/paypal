@@ -1096,7 +1096,8 @@ type (
 		// Subscription
 		BillingInfo *BillingInfo `json:"billing_info,omitempty"`
 		// Payment  Sale Resource type
-		Custom string `json:"custom,omitempty"`
+		Custom             string `json:"custom,omitempty"`
+		BillingAgreementId string `json:"billing_agreement_id,omitempty"`
 		// Common
 		Links []Link `json:"links,omitempty"`
 	}
