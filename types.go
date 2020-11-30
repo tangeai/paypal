@@ -1098,6 +1098,7 @@ type (
 		// Payment  Sale Resource type
 		Custom             string `json:"custom,omitempty"`
 		BillingAgreementId string `json:"billing_agreement_id,omitempty"`
+		SaleId             string `json:"sale_id,omitempty"`
 		// Common
 		Links []Link `json:"links,omitempty"`
 	}
