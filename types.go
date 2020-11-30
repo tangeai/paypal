@@ -1095,6 +1095,8 @@ type (
 		Payer         *PayerWithNameAndPhone `json:"payer,omitempty"`
 		// Subscription
 		BillingInfo *BillingInfo `json:"billing_info,omitempty"`
+		// Payment  Sale Resource type
+		Custom string `json:"custom,omitempty"`
 		// Common
 		Links []Link `json:"links,omitempty"`
 	}
