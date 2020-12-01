@@ -33,28 +33,39 @@ type (
 )
 
 func (self *Product) GetUpdatePatch() []Patch {
-	return []Patch{
-		{
+	patchArr := make([]Patch, 0)
+	if len(self.Description) > 0 {
+		patchArr = append(patchArr, Patch{
 			Operation: "replace",
 			Path:      "/description",
 			Value:     self.Description,
-		},
-		{
+		})
+	}
+
+	if len(self.Category) > 0 {
+		patchArr = append(patchArr, Patch{
 			Operation: "replace",
 			Path:      "/category",
 			Value:     self.Category,
-		},
-		{
+		})
+	}
+
+	if len(self.ImageUrl) > 0 {
+		patchArr = append(patchArr, Patch{
 			Operation: "replace",
 			Path:      "/image_url",
 			Value:     self.ImageUrl,
-		},
-		{
+		})
+	}
+
+	if len(self.HomeUrl) > 0 {
+		patchArr = append(patchArr, Patch{
 			Operation: "replace",
 			Path:      "/home_url",
 			Value:     self.HomeUrl,
-		},
+		})
 	}
+	return patchArr
 }
 
 // CreateProduct creates a product
