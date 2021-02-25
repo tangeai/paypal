@@ -137,17 +137,15 @@ func (c *Client) SendWithAuth(req *http.Request, v interface{}) error {
 	// Note: Here we do not want to `defer c.Unlock()` because we need `c.Send(...)`
 	// to happen outside of the locked section.
 
-	if c.Token != nil {
-		if !c.tokenExpiresAt.IsZero() && c.tokenExpiresAt.Sub(time.Now()) < RequestNewTokenBeforeExpiresIn {
-			// c.Token will be updated in GetAccessToken call
-			if _, err := c.GetAccessToken(); err != nil {
-				c.Unlock()
-				return err
-			}
+	if c.Token == nil || c.tokenExpiresAt.IsZero() || c.tokenExpiresAt.Sub(time.Now()) < RequestNewTokenBeforeExpiresIn  {
+		// c.Token will be updated in GetAccessToken call
+		if _, err := c.GetAccessToken(); err != nil {
+			c.Unlock()
+			return err
 		}
-
-		req.Header.Set("Authorization", "Bearer "+c.Token.Token)
 	}
+
+	req.Header.Set("Authorization", "Bearer "+c.Token.Token)
 
 	// Unlock the client mutex before sending the request, this allows multiple requests
 	// to be in progress at the same time.
