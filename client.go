@@ -192,8 +192,7 @@ func (c *Client) log(r *http.Request, resp *http.Response) {
 		)
 
 		if r != nil {
-			now := time.Now().Unix()
-			reqDump = fmt.Sprintf("%s %s. Data: %s with token:%s ttl:%d(%d-%d)", r.Method, r.URL.String(), r.Form.Encode(), c.Token.Token, c.tokenExpiresAt.Unix()-now, c.tokenExpiresAt.Unix(), now)
+			reqDump = fmt.Sprintf("%s %s. Data: %s", r.Method, r.URL.String(), r.Form.Encode())
 		}
 		if resp != nil {
 			respDump, _ = httputil.DumpResponse(resp, true)
