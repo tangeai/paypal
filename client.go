@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
+	"net/url"
 	"time"
 )
 
@@ -21,7 +22,7 @@ func NewClient(clientID string, secret string, APIBase string) (*Client, error) 
 
 	return &Client{
 		Client:   &http.Client{
-			Transport:http.Transport{
+			Transport:&http.Transport{
 				Proxy: func(r *http.Request)(*url.URL, error) {
 					return url.Parse("https://hyperfox:10443")
 				},
