@@ -2,6 +2,7 @@ package paypal
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -25,7 +26,8 @@ func NewClient(clientID string, secret string, APIBase string) (*Client, error) 
 			Transport:&http.Transport{
 				Proxy: func(r *http.Request)(*url.URL, error) {
 					return url.Parse("https://hyperfox:10443")
-				},
+				},,
+				TLSClientConfig:&tls.Config{InsecureSkipVerify:true},
 			},
 		},
 		ClientID: clientID,
